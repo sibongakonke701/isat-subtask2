@@ -1,0 +1,6 @@
+commit message: "Initial project setup with basic structure"
+
+Files changed:
+- README.md (basic project description)
+- .gitignore (added for C++ projects)
+- Makefile (basic compilation instructions)
