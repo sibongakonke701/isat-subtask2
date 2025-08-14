@@ -1,0 +1,8 @@
+commit message: "Final polish and added documentation"
+
+Files changed:
+- converter.cpp (added:
+  - input validation
+  - comments
+  - error handling)
+- README.md (updated with usage instructions)
