@@ -1,0 +1,7 @@
+commit message: "Added hexadecimal conversion functions"
+
+Files changed:
+- converter.cpp (added:
+  - decimalToHexadecimal()
+  - hexadecimalToDecimal()
+  - updated function prototypes)
