@@ -1,0 +1,7 @@
+commit message: "Implemented core conversion functions"
+
+Files changed:
+- converter.cpp (added:
+  - decimalToBinary()
+  - binaryToDecimal()
+  - basic main() skeleton)
