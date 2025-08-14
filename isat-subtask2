@@ -1,0 +1,140 @@
+#include <iostream>
+#include <string>
+#include <cstdlib>
+#include <ctime>
+#include <cmath>
+#include <algorithm>
+
+using namespace std;
+
+// Function prototypes
+string decimalToBinary(int decimalNum);
+int binaryToDecimal(string binaryStr);
+string decimalToHexadecimal(int decimalNum);
+int hexadecimalToDecimal(string hexStr);
+void demoMode();
+void displayMenu();
+
+int main() {
+    srand(time(0)); // Seed for random number generation
+    
+    int choice;
+    string input;
+    int number;
+    
+    do {
+        displayMenu();
+        cout << "Enter your choice (1-6): ";
+        cin >> choice;
+        
+        switch(choice) {
+            case 1:
+                cout << "Enter a decimal number: ";
+                cin >> number;
+                cout << "Binary representation: " << decimalToBinary(number) << endl;
+                break;
+            case 2:
+                cout << "Enter a binary number: ";
+                cin >> input;
+                cout << "Decimal representation: " << binaryToDecimal(input) << endl;
+                break;
+            case 3:
+                cout << "Enter a hexadecimal number: ";
+                cin >> input;
+                cout << "Decimal representation: " << hexadecimalToDecimal(input) << endl;
+                break;
+            case 4:
+                cout << "Enter a decimal number: ";
+                cin >> number;
+                cout << "Hexadecimal representation: " << decimalToHexadecimal(number) << endl;
+                break;
+            case 5:
+                demoMode();
+                break;
+            case 6:
+                cout << "Exiting the program." << endl;
+                break;
+            default:
+                cout << "Invalid choice. Please enter a number between 1 and 6." << endl;
+        }
+    } while (choice != 6);
+    
+    return 0;
+}
+
+string decimalToBinary(int decimalNum) {
+    if (decimalNum == 0) return "0";
+    
+    string binaryStr = "";
+    while (decimalNum > 0) {
+        binaryStr = to_string(decimalNum % 2) + binaryStr;
+        decimalNum /= 2;
+    }
+    return binaryStr;
+}
+
+int binaryToDecimal(string binaryStr) {
+    int decimalNum = 0;
+    int length = binaryStr.length();
+    
+    for (int i = 0; i < length; i++) {
+        if (binaryStr[i] == '1') {
+            decimalNum += pow(2, length - 1 - i);
+        }
+    }
+    return decimalNum;
+}
+
+string decimalToHexadecimal(int decimalNum) {
+    if (decimalNum == 0) return "0";
+    
+    string hexChars = "0123456789ABCDEF";
+    string hexStr = "";
+    
+    while (decimalNum > 0) {
+        hexStr = hexChars[decimalNum % 16] + hexStr;
+        decimalNum /= 16;
+    }
+    return hexStr;
+}
+
+int hexadecimalToDecimal(string hexStr) {
+    int decimalNum = 0;
+    int length = hexStr.length();
+    
+    // Convert to uppercase for case-insensitive comparison
+    transform(hexStr.begin(), hexStr.end(), hexStr.begin(), ::toupper);
+    
+    for (int i = 0; i < length; i++) {
+        char c = hexStr[i];
+        int value;
+        
+        if (c >= '0' && c <= '9') {
+            value = c - '0';
+        } else if (c >= 'A' && c <= 'F') {
+            value = 10 + (c - 'A');
+        } else {
+            // Invalid hex character
+            return -1;
+        }
+        
+        decimalNum += value * pow(16, length - 1 - i);
+    }
+    return decimalNum;
+}
+
+void demoMode() {
+    int randomNum = rand() % 100; // Generate number between 0-99
+    cout << "Generated random integer: " << randomNum << endl;
+    cout << "Binary representation: " << decimalToBinary(randomNum) << endl;
+}
+
+void displayMenu() {
+    cout << "\n### Conversion Menu:" << endl;
+    cout << "1. Convert Decimal to Binary" << endl;
+    cout << "2. Convert Binary to Decimal" << endl;
+    cout << "3. Convert Hexadecimal to Decimal" << endl;
+    cout << "4. Convert Decimal to Hexadecimal" << endl;
+    cout << "5. Demo (Generate and convert random integers to binary)" << endl;
+    cout << "6. Exit" << endl;
+}
