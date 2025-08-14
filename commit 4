@@ -1,0 +1,7 @@
+commit message: "Implemented menu-driven interface"
+
+Files changed:
+- converter.cpp (added:
+  - displayMenu()
+  - demoMode()
+  - complete main() with switch-case structure)
